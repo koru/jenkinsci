@@ -18,9 +18,11 @@ job('seed.seed') {
         }
         systemGroovyCommand("""
         import org.jenkinsci.plugins.scriptsecurity.scripts.*
-        println "running script to disable approval"
-        def hashList = ScriptApproval.get().getPendingScripts().collect{it.getHash()}
-        println "Done"           
+        ScriptApproval scriptApproval = ScriptApproval.get()
+        scriptApproval.pendingScripts.each {
+            scriptApproval.approveScript(it.hash)
+        }
+        println "Done"            
         """.stripIndent())
     }
     triggers {

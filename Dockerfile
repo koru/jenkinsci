@@ -1,4 +1,5 @@
-FROM jenkins/jenkins:2.121.3
+#FROM jenkins/jenkins:2.121.3
+FROM jenkins/jenkins:2.176 
 
 USER root
 # define env variables
